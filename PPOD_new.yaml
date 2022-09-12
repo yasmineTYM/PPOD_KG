@@ -1,0 +1,547 @@
+# PPOD LinkML schema
+
+id: https://github.com/adhollander/ppod 
+name: PPOD
+prefixes:
+  linkml: https://w3id.org/linkml/
+  foaf: http://xmlns.com/foaf/0.1/
+  skos: http://www.w3.org/2004/02/skos/core#
+  dc: http://purl.org/dc/terms/
+  org: http://www.w3.org/ns/org#
+  vivo: http://vivoweb.org/ontology/core#
+  obo: http://purl.obolibrary.org/obo/
+  sds: http://www.sdsconsortium.org/schemas/sds-okn.owl#
+  fsl: https://raw.githubusercontent.com/adhollander/FSLschemas/main/sustsource.owl#
+  fsls: https://raw.githubusercontent.com/adhollander/FSLschemas/main/fsisupp.owl#
+  fsli: https://raw.githubusercontent.com/adhollander/FSLschemas/main/sustsourceindiv.rdf#
+  fslp: https://raw.githubusercontent.com/adhollander/FSLschemas/main/CA_PPODterms.ttl#
+  frapo: http://purl.org/cerif/frapo/
+  poder: http://dev.poderopedia.com/vocab/
+  dbpedia: http://dbpedia.org/ontology/
+  geo: http://www.w3.org/2003/01/geo/wgs84_pos#
+  frbr: http://iflastandards.info/ns/fr/frbr/frbrer/
+  dg: https://w3id.org/dingo#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  schema: https://schema.org/
+
+imports: 
+  - linkml:types
+  - vocabs
+default_range: string
+
+
+classes:
+  Organization:
+    class_uri: foaf:Organization
+    slots:
+      - label
+      - has URL
+      - participate in 
+      - title 
+      - contact
+      - alias
+      - is member of
+      - has organization type
+      - ecological process
+      - in county
+      - related sustainability issue
+      - is part of
+      - in ecoregion
+      - associated geography  
+      - has partner
+      - is funded by
+      # - has organization activity
+      - taxa
+      - CWHR land cover
+      - commodity
+      # - GM name
+      # - use case
+      - creator of 
+      - was created by 
+      - implements
+      - mandates 
+      - is bound by 
+      - has funding vehicle 
+      - is certified by
+      - enforces
+
+  Project:
+    class_uri: foaf:Project
+    is_a: ProjectProgram
+    slots:
+      - title # changed from "project" in script
+      - id
+      - label
+      - alias 
+      - is part of 
+      - project type
+      - occurs in 
+      - lead organization 
+      - funding organization
+      - has funding vehicle 
+      - lead individual 
+      - partner organization 
+      - located in 
+      - in county 
+      - in ecoregion 
+      - in watershed 
+      - related sustainability issue 
+      - project details
+      - has indicator 
+      - input of 
+      - output of 
+      - has strategy 
+      - has URL 
+      - taxa 
+      - CWHR land cover 
+      - ecological process
+      - start year
+      - end year 
+      - is funded by 
+      - latitude 
+      - longitude 
+      - FSL doc 
+      # - use case
+
+  Program: 
+    class_uri: vivo:Program
+    is_a: ProjectProgram
+    slots:
+      - title
+      - id
+      - label
+      - alias
+      - program type
+      - lead organization
+      - partner organization
+      - related sustainability issue
+      - lead individual
+      # - GM name
+      - in county
+      - in ecoregion
+      - has URL
+      - taxa
+      # - use case
+
+  Person:
+    class_uri: foaf:Person
+    slots:
+      - label
+      - id 
+      - full name
+      - last name
+      - first name
+      - email 
+      - phone 
+      - related sustainability issue
+      - note 
+      # - use case
+
+  GuidelineMandate: 
+    class_uri: sds:BestPracticesAndMandates
+    slots:
+      - title
+      - id
+      - label
+      - alias
+      - related sustainability issue
+      - guideline or mandate type
+      - has date 
+      - government level
+      - in county
+      - in ecoregion
+      - has URL
+      - taxa
+      - CWHR land cover
+      - ecological process
+      # - use case
+      # - authorizes
+      # - binds 
+      - mandates
+
+  Dataset:
+    class_uri: vivo:Dataset
+    slots:
+      - title
+      - id
+      - label
+      - created by
+      - related sustainability issue
+      # - GM name
+      # - use case
+
+  Role:
+    class_uri: obo:BFO_0000023
+    slots:
+      - label
+      - id
+      - has participant
+      - role of
+      - involved in
+      - title
+      - position type
+      - start year
+      - end year
+      - has role
+      - role type
+
+  Tool: 
+    class_uri: sds:Tool
+    slots:
+      - title
+      - id 
+      - label
+      - alias 
+      - was created by
+      - related sustainability issue
+      - has URL
+      - has input 
+      - has output
+      - references
+
+  # ProjectProgram:
+  #   abstract: true
+      
+slots:
+  participate in:
+    slot_uri: ns3:participate_in
+    description: participate in 
+  title:
+    required: true
+    description:
+      name of the entity
+    slot_uri: dc:title
+  id:
+    description: Canonical identifier for the entity
+    identifier: true
+    slot_uri: ns4:has_url
+    # range: uriorcurie
+  label:
+    required: true
+    description: a captioning label for the entity
+    slot_uri: rdfs:label
+  alias:
+    description:
+      alternative name for the entity
+    slot_uri: skos:alias
+    multivalued: true
+  is part of:
+    description:
+      entity is part of the related entity
+    slot_uri: dcterms:is_part_of
+    range: Organization
+    multivalued: true
+  is member of:
+    description:
+      is a member of the related entity
+    slot_uri: org:is_member_of
+    range: Organization
+    multivalued: true
+  in county:
+    description:
+      entity is in the named county 
+    slot_uri: ns1:in_county
+    multivalued: true
+  in ecoregion:
+    description:
+      entity is in the named ecoregion 
+    slot_uri: ns1:in_ecoregion
+    multivalued: true  
+  associated geography:
+    description:
+      entity has the associated geography
+    slot_uri: ns1:associated_geography
+    multivalued: true
+  has organization type:
+    description:
+      the type of the organization
+    slot_uri: org:organization_type
+    multivalued: true
+    range: OrganizationType
+  has partner:
+    description:  
+      partner of the organization
+    slot_uri: ns5:has_collaborator
+    multivalued: true
+    range: Organization
+  is funded by:
+    description: the entity providing funding
+    slot_uri: ns10:is_funded_by
+    multivalued: true
+    range: Organization
+  # has organization activity:
+  #   description: the activity carried out by the organization
+  #   slot_uri: obo:RO_0000056   # this is what I have in the python script but maybe we want something else?
+  #   multivalued: true
+  #   range: OrganizationActivity
+  related sustainability issue:
+    description: a sustainability issue of interest to the entity
+    slot_uri: ns1:related_sustainability_issue
+    multivalued: true
+    range:  # per Unions as ranges in the experimental features of the spec
+      - IntegratedIssue
+      - ComponentIssue
+  has URL: 
+    description: URL of the entity 
+    slot_uri: ns4:has_url
+    multivalued: true
+    # range: uriorcurie
+  contact: 
+    description: contact information for the entity
+    slot_uri: ns5:contact_info
+    multivalued: false 
+  taxa: 
+    description: taxa of interest to the entity
+    slot_uri: ns1:taxa
+    multivalued: true
+  CWHR land cover:
+    description: land cover classification according to the California Wildlife Habitat Relationships classification system
+    slot_uri: ns1:habitat_type
+    multivalued: true
+    range: CWHRHabitatType
+  commodity:
+    description: commodity of interest to the entity
+    slot_uri: ns1:commodity
+    multivalued: true
+    range: CommodityType
+  ecological process:
+    description: ecological process of interest to the entity
+    slot_uri: ns1:ecological_process
+    multivalued: true
+  # GM name:
+  #   description: name of guideline or mandate related to the entity
+  #   slot_uri: fsls:GM_name
+  #   multivalued: true
+  #   range: GuidelineMandate 
+  # use case: 
+  #   description: use case the entity participates in
+  #   slot_uri: fsls:usecase
+  #   multivalued: true
+  #   range: UseCases
+  project type:
+    description: category describing the project
+    slot_uri: ns1:project_type
+    multivalued: true
+    range: ProjectType 
+  occurs in: 
+    description: activity takes place in related entity
+    slot_uri: ns3:occurs_in
+    multivalued: true
+    # range: uriorcurie
+  lead organization:
+    description: organization leading the project
+    slot_uri: ns1:lead organization
+    multivalued: true
+    range: Organization
+  funding organization:
+    description: entity that provides funding for the activity
+    slot_uri: ns1:funding_organization
+    multivalued: true
+    range: Organization 
+  has funding vehicle:
+    description: program or activity under which funding for the effort is provided
+    slot_uri: ns5:has_funding_vehicle
+    multivalued: true
+  lead individual:
+    description: person who is the project lead
+    slot_uri: ns1:lead_individual
+    multivalued: false
+  partner organization:
+    description: an organization that is affiliated with this activity
+    slot_uri: ns5:affiliated_organization
+    range: Organization
+    multivalued: true
+  located in: 
+    description: area of occurrence of the activity
+    slot_uri: ns3:located_in
+    multivalued: false
+  in watershed:
+    description: activity occurs in the given watershed
+    slot_uri: ns1:in_watershed
+    multivalued: true
+  project details:
+    description: description of details of the project
+    slot_uri: ns1:project_detail
+    multivalued: false
+  has indicator:
+    description: uses the associated environmental indicator
+    slot_uri: ns1:has_indicator
+    multivalued: true
+  input of: 
+    description: activity is the input of the referred-to entity
+    slot_uri: ns3:input_of
+    multivalued: true
+    range: Dataset
+  output of: 
+    description: activity is the output of the referred-to entity
+    slot_uri: ns4:output_of
+    multivalued: true
+    range: Dataset
+  has strategy:
+    description: activity uses the listed strategy
+    slot_uri: ns1:has_strategy
+    multivalued: true
+  start year:
+    description: start year of the activity
+    slot_uri: ns2:start_year
+    multivalued: false
+  end year:
+    description: end year of the activity
+    slot_uri: ns2:end_year
+    multivalued: false
+  latitude:
+    description: latitude of the entity
+    slot_uri: ns6:latitude
+    multivalued: false
+  longitude:
+    description: longitude of the entity
+    slot_uri: ns6:longitude
+    multivalued: false
+  FSL doc: 
+    description: additional documentation describing the entity
+    slot_uri: ns1:FSL_doc
+    multivalued: false
+    # range: uriorcurie
+  program type:
+    description: category describing the program
+    slot_uri: ns1:program_type
+    multivalued: true
+    range: ProgramType
+  created by:
+    description: entity that created the given element
+    slot_uri: ns7:was_created_by
+    multivalued: true
+    range: Organization
+  full name:
+    description: full name of the individual
+    slot_uri: foaf:name 
+    multivalued: false
+  last name:
+    description: last name of the individual
+    slot_uri: foaf:lastName
+    multivalued: false
+  first name: 
+    description: first name of the individual
+    slot_uri: foaf:firstName
+    multivalued: false
+  email:
+    description: email address of the individual
+    slot_uri: foaf:mbox
+    multivalued: false
+  phone:
+    description: telephone number of the individual
+    slot_uri: foaf:phone
+    multivalued: false
+  note: 
+    description: additional text information about the entity
+    slot_uri: ns1:note
+    multivalued: false
+  guideline or mandate type:
+    description: category describing the guideline or the mandate
+    slot_uri: ns1:guideline_mandate_name
+    multivalued: true
+    range: GuidelineMandateType
+  has date: 
+    description: date of the activity or the creation of the resource
+    slot_uri: dcterms:date 
+    multivalued: false
+    # range: linkml:Date
+  government level:
+    description: level of government the activity occurs under
+    slot_uri: ns1:government_level
+    multivalued: true
+    range: GovernmentLevelType
+  has participant:
+    description: the activity such as a role includes this person as a participant
+    slot_uri: ns3:has_participant
+    multivalued: true
+    range: Person 
+  role of:
+    description: name of role individual takes, e.g. position title
+    slot_uri: ns3:role_of
+    multivalued: true
+    range: Organization
+  position type:
+    description: category describing the role held by the individual in the organization
+    slot_uri: ns1:position_type
+    multivalued: false
+    range: PositionType
+  involved in:
+    description: the project or program a person with a given role is involved In
+    slot_uri: ns3:involved_in
+    multivalued: false
+    any_of:
+      - range: Project 
+      - range: Program
+    # range: ProjectProgram # this does not work with SHACL validation
+  has role: 
+    description: name labelling the role 
+    slot_uri: ns3:has_role
+    multivalued: false
+  role type:
+    description: a category describing the role
+    slot_uri: ns1:role_type
+    multivalued: false
+    range: RoleType
+  creator of: 
+    description: "Relates a corporate body to a work of which it is responsible for the creation of the intellectual or artistic content."
+    slot_uri: ns7:creator_of
+    multivalued: true
+    range: GuidelineMandate # okay, this should be a superclass, probably a BFO thing.
+  was created by: 
+    description: "Relates a work to a corporate body that is responsible for the creation of the intellectual or artistic content of the work."
+    slot_uri: ns7:was_created_by
+    multivalued: true
+  implements: 
+    description: The relationship between the funding agency (subject) and the decision, plan, program (object) that the funding agency implements and administers.
+    slot_uri: ns8:implements
+    multivalued: true
+    range: GuidelineMandate
+  mandates: 
+    description: The relationship where the organization mandates a particular activity or action
+    slot_uri: ns1:mandates
+    multivalued: true
+  is bound by: 
+    description: The relationship where the organization is bound by a particular activity or action
+    slot_uri: ns1:is_bound_by
+    multivalued: true
+    range: GuidelineMandate 
+  is certified by: 
+    description: The relationship where the organization is certified by a particular mandate or guideline
+    slot_uri: ns1:is_certified_by
+    multivalued: true
+    range: GuidelineMandate
+  enforces: 
+    description: The relationship where the organization enforces a particular mandate or guideline
+    slot_uri: ns1:enforces
+    multivalued: true
+    range: GuidelineMandate
+  # authorizes: 
+  #   description: The guideline or mandate authorizes this particular role 
+  #   slot_uri: fsls:authorizes
+  #   multivalued: true
+  #   range: Role
+  # binds: 
+  #   description: The guideline or mandate binds this particular role 
+  #   slot_uri: fsls:binds
+  #   multivalued: true
+  #   range: Role
+  references:
+    description: A related resource that is referenced, cited, or otherwise pointed to by the described resource.
+    slot_uri: dcterms:references
+    multivalued: false
+  has input:
+    description: The tool has the indicated dataset as an output to its workflow
+    slot_uri: ns3:has_input
+    multivalued: true
+    range: Dataset
+  has output:
+    description: The tool has the indicated dataset as an input to its workflow
+    slot_uri: ns3:has_output
+    multivalued: true
+    range: Dataset
+
+
+
+
+  
