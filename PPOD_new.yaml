@@ -3,6 +3,22 @@
 id: https://github.com/adhollander/ppod 
 name: PPOD
 prefixes:
+  dcterms: <http://purl.org/dc/terms/> .
+  foaf: <http://xmlns.com/foaf/0.1/> .
+  ns1: <https://raw.githubusercontent.com/adhollander/FSLschemas/main/fsisupp.owl#> .
+  ns10: <http://purl.org/cerif/frapo/> .
+  ns2: <http://dbpedia.org/ontology/> .
+  ns3: <http://purl.obolibrary.org/obo/> .
+  ns4: <http://dev.poderopedia.com/vocab/> .
+  ns5: <http://vivoweb.org/ontology/core#> .
+  ns6: <https://www.w3.org/2003/01/geo/wgs84_pos#> .
+  ns7: <http://iflastandards.info/ns/fr/frbr/frbrer/> .
+  ns8: <https://w3id.org/dingo#> .
+  ns9: <https://raw.githubusercontent.com/adhollander/FSLschemas/main/CA_PPODterms.ttl#> .
+  org: <http://www.w3.org/ns/org#> .
+  rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+  skos: <http://www.w3.org/2004/02/skos/core#> .
+  xsd: <http://www.w3.org/2001/XMLSchema#> .
   linkml: https://w3id.org/linkml/
   foaf: http://xmlns.com/foaf/0.1/
   skos: http://www.w3.org/2004/02/skos/core#
@@ -66,7 +82,7 @@ classes:
       - enforces
 
   Project:
-    class_uri: foaf:Project
+    class_uri: ns5:Project
     is_a: ProjectProgram
     slots:
       - title # changed from "project" in script
@@ -104,7 +120,7 @@ classes:
       # - use case
 
   Program: 
-    class_uri: vivo:Program
+    class_uri: ns5:Program
     is_a: ProjectProgram
     slots:
       - title
@@ -138,7 +154,7 @@ classes:
       # - use case
 
   GuidelineMandate: 
-    class_uri: sds:BestPracticesAndMandates
+    class_uri: <http://www.sdsconsortium.org/schemas/sds-okn.owl#BestPracticesAndMandates>
     slots:
       - title
       - id
@@ -160,7 +176,7 @@ classes:
       - mandates
 
   Dataset:
-    class_uri: vivo:Dataset
+    class_uri: ns5:Dataset
     slots:
       - title
       - id
@@ -171,19 +187,18 @@ classes:
       # - use case
 
   Role:
-    class_uri: obo:BFO_0000023
+    class_uri: ns3:Role
     slots:
       - label
       - id
       - has participant
-      - role of
       - involved in
       - title
       - position type
       - start year
       - end year
       - has role
-      - role type
+      # - role type
 
   Tool: 
     class_uri: sds:Tool
@@ -205,7 +220,8 @@ classes:
 slots:
   participate in:
     slot_uri: ns3:participate_in
-    description: participate in 
+    description: participate in
+    range: OrganizationActivity
   title:
     required: true
     description:
@@ -242,6 +258,7 @@ slots:
       entity is in the named county 
     slot_uri: ns1:in_county
     multivalued: true
+    range: County
   in ecoregion:
     description:
       entity is in the named ecoregion 
@@ -478,11 +495,11 @@ slots:
     description: name labelling the role 
     slot_uri: ns3:has_role
     multivalued: false
-  role type:
-    description: a category describing the role
-    slot_uri: ns1:role_type
-    multivalued: false
-    range: RoleType
+  # role type:
+  #   description: a category describing the role
+  #   slot_uri: ns1:role_type
+  #   multivalued: false
+  #   range: RoleType
   creator of: 
     description: "Relates a corporate body to a work of which it is responsible for the creation of the intellectual or artistic content."
     slot_uri: ns7:creator_of
