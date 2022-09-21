@@ -52,7 +52,7 @@ classes:
     slots:
       - label
       - has URL
-      - participate in 
+      # - participate in 
       - title 
       - contact
       - alias
