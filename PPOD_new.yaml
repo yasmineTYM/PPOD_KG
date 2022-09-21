@@ -66,7 +66,7 @@ classes:
       - associated geography  
       - has partner
       - is funded by
-      # - has organization activity
+      - has organization activity
       - taxa
       - CWHR land cover
       - commodity
@@ -218,10 +218,10 @@ classes:
   #   abstract: true
       
 slots:
-  participate in:
-    slot_uri: ns3:participate_in
-    description: participate in
-    range: OrganizationActivity
+  # participate in:
+  #   slot_uri: ns3:participate_in
+  #   description: participate in
+  #   range: OrganizationActivity
   title:
     required: true
     description:
@@ -286,11 +286,11 @@ slots:
     slot_uri: ns10:is_funded_by
     multivalued: true
     range: Organization
-  # has organization activity:
-  #   description: the activity carried out by the organization
-  #   slot_uri: obo:RO_0000056   # this is what I have in the python script but maybe we want something else?
-  #   multivalued: true
-  #   range: OrganizationActivity
+  has organization activity:
+    description: the activity carried out by the organization
+    slot_uri: ns3:participate_in   # this is what I have in the python script but maybe we want something else?
+    multivalued: true
+    range: OrganizationActivity
   related sustainability issue:
     description: a sustainability issue of interest to the entity
     slot_uri: ns1:related_sustainability_issue
