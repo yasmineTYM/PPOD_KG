@@ -19,8 +19,6 @@ prefixes:
 imports: 
   - linkml:types
 default_range: string
-
-
 enums:
   OrganizationType:
     head_uri: [foaf:Organization]
@@ -46,7 +44,6 @@ enums:
         meaning: ns9:oty_db5b7d
       Tribal:
         meaning: ns9:oty_905088
-
   County: 
     head_uri: 
       - foaf:Organization
@@ -171,7 +168,6 @@ enums:
          meaning: <http://www.wikidata.org/entity/Q109709>
        Yuba:
          meaning: <http://www.wikidata.org/entity/Q196014>
-
   OrganizationActivity:
     head_uri: [foaf:Organization]
     relation: ns3:participate_in
