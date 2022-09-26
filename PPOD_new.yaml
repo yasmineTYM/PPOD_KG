@@ -86,7 +86,7 @@ classes:
     is_a: ProjectProgram
     slots:
       - title # changed from "project" in script
-      - id
+      # - id
       - label
       - alias 
       - is part of 
@@ -124,7 +124,7 @@ classes:
     is_a: ProjectProgram
     slots:
       - title
-      - id
+      # - id
       - label
       - alias
       - program type
@@ -143,7 +143,7 @@ classes:
     class_uri: foaf:Person
     slots:
       - label
-      - id 
+      # - id 
       - full name
       - last name
       - first name
@@ -157,7 +157,7 @@ classes:
     class_uri: <http://www.sdsconsortium.org/schemas/sds-okn.owl#BestPracticesAndMandates>
     slots:
       - title
-      - id
+      # - id
       - label
       - alias
       - related sustainability issue
@@ -179,7 +179,7 @@ classes:
     class_uri: ns5:Dataset
     slots:
       - title
-      - id
+      # - id
       - label
       - created by
       - related sustainability issue
@@ -190,7 +190,7 @@ classes:
     class_uri: ns3:Role
     slots:
       - label
-      - id
+      # - id
       - has participant
       - involved in
       - title
@@ -201,10 +201,10 @@ classes:
       # - role type
 
   Tool: 
-    class_uri: sds:Tool
+    class_uri: <http://www.sdsconsortium.org/schemas/sds-okn.owl#Tool>
     slots:
       - title
-      - id 
+      # - id 
       - label
       - alias 
       - was created by
@@ -226,11 +226,11 @@ slots:
     required: true
     description:
       name of the entity
-    slot_uri: dc:title
-  id:
-    description: Canonical identifier for the entity
-    identifier: true
-    slot_uri: ns4:has_url
+    slot_uri: dcterms:title
+  # id:
+  #   description: Canonical identifier for the entity
+  #   identifier: true
+  #   slot_uri: ns4:has_url
     # range: uriorcurie
   label:
     required: true
@@ -487,9 +487,9 @@ slots:
     description: the project or program a person with a given role is involved In
     slot_uri: ns3:involved_in
     multivalued: false
-    any_of:
-      - range: Project 
-      - range: Program
+    range:
+      - Project 
+      - Program
     # range: ProjectProgram # this does not work with SHACL validation
   has role: 
     description: name labelling the role 

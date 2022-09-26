@@ -575,6 +575,9 @@ enums:
       - <http://www.sdsconsortium.org/schemas/sds-okn.owl#BestPracticesAndMandates>
       - ns5:Project
       - ns5:Program
+      - foaf:Person
+      - ns5:Dataset
+      - <http://www.sdsconsortium.org/schemas/sds-okn.owl#Tool>
     relation: ns1:related_sustainability_issue
     permissible_values:
        Agricultural Sector:
